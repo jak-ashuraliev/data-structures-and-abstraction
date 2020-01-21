@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.mycompany.pileofbooks;
-
 /**
  * @author Jak Ashuraliev
  * Data Structures / Algorithms
- * BAG INTERFACE
+ * 
  * Purpose:
+ * Implementaion of BagInterface.
  * Define a class PileOfBooks that implements this interface. 
  * Then write a program that adequately demonstrates your implementation.
  * In this program, you will need to have 1 class with the name as PileOfBooks, 
