@@ -14,7 +14,7 @@ public class Test {
     
     public static void main(String[] args) {
     
-        PileOfBooks<String> myPile = new PileOfBooks<>();
+        PileInterface<String> myPile = new PileOfBooks<>();
         
         System.out.println("Create and empty pile of books:");
         System.out.println("isEmpty() returns: " + myPile.isEmpty()); 

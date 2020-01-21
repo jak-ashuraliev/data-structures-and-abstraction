@@ -8,7 +8,7 @@
  * Then write a program that adequately demonstrates your implementation.
  * In this program, you will need to have 1 class with the name as PileOfBooks, 
  * 1 interface with the name as PileInterface,  and 1 test class to test everything.
- * @param <T>
+ * @param T
  */
 
 public interface PileInterface<T> {

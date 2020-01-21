@@ -1,6 +1,6 @@
 /**
  * @author Jak Ashuraliev
- * Data Structures / Algorithms 
+ * Data Structures / Algorithms
  * 
  * Purpose:
  * Implementaion of BagInterface.
@@ -8,21 +8,18 @@
  * Then write a program that adequately demonstrates your implementation.
  * In this program, you will need to have 1 class with the name as PileOfBooks, 
  * 1 interface with the name as PileInterface,  and 1 test class to test everything.
- * @param <T>
+ * @param T
  */
 
 import java.util.*;
 
-public class PileOfBooks<T> implements PileInterface<T> {
+public final class PileOfBooks<T> implements PileInterface<T> {
     
-    //data fields
-    int top =-1;
-    int capacity;
     private T[] bag;
     private int numberOfEntries;
     private boolean integrityOK = false;
-    private static final int DEFAULT_CAPACITY = 4;
     private static final int MAX_CAPACITY = 10000;
+    private static final int DEFAULT_CAPACITY = 4;
     
     //create an empty bag with max capacity
     public PileOfBooks() {
@@ -32,13 +29,11 @@ public class PileOfBooks<T> implements PileInterface<T> {
     /** Creates an empty bag having a given initial capacity.
      * @param desiredCapacity  The integer capacity desired. */
     public PileOfBooks(int desiredCapacity) {
-        integrityOK = false;
         if (desiredCapacity <= MAX_CAPACITY) {
             @SuppressWarnings("unchecked")
             T[] tempBag = (T[]) new Object[desiredCapacity];
             bag = tempBag;
             numberOfEntries = 0;
-            capacity = desiredCapacity;
             integrityOK = true;
         } else {
             throw new IllegalStateException("Attempt to create a bag whose capacity exeeds allowed " +
@@ -47,6 +42,11 @@ public class PileOfBooks<T> implements PileInterface<T> {
       
     }
    
+    // Returns true if the ArrayBag is full, or false it not.
+    private boolean isArrayFull(){
+        return numberOfEntries >= bag.length;
+    }
+    
     // Throws an exception if this object is not initialized.
     private void checkIntegrity() {
         if (!integrityOK) 
@@ -54,8 +54,8 @@ public class PileOfBooks<T> implements PileInterface<T> {
     }
 
     // Throws an exception if the client requests a capacity that is too large.
-    private void checkCapacity(int capacity) {
-        if (capacity > MAX_CAPACITY) 
+    private void checkCapacity(int DEFAULT_CAPACITY) {
+        if (DEFAULT_CAPACITY > MAX_CAPACITY) 
             throw new IllegalStateException("Capacity you are trying to create is too large.");
     }
     
@@ -65,11 +65,6 @@ public class PileOfBooks<T> implements PileInterface<T> {
         int newLength = 2 * bag.length;
         checkCapacity(newLength);
         bag = Arrays.copyOf(bag, newLength);
-    }
-    
-    // Returns true if the ArrayBag is full, or false it not.
-    private boolean isArrayFull(){
-        return numberOfEntries >= bag.length;
     }
     
     /** Adds a new entry to this bag.
@@ -100,14 +95,15 @@ public class PileOfBooks<T> implements PileInterface<T> {
         }
         return result;
     } 
-    
+
     //The getTopBook method should retrieve this pile's top book.
     public T getTopBook(){
         checkIntegrity();
         if (numberOfEntries == 0) {
             return null;
+        } else {
+            return bag[numberOfEntries -1];
         }
-        return bag[numberOfEntries -1];
     }
     
     /** Sees whether this bag is empty.
@@ -121,6 +117,5 @@ public class PileOfBooks<T> implements PileInterface<T> {
         while (!isEmpty())
             remove();
     };
-    
     
 }
