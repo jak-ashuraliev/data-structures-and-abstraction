@@ -18,7 +18,7 @@ public final class PileOfBooks<T> implements PileInterface<T> {
     private int numberOfEntries;
     private boolean integrityOK = false;
     private static final int MAX_CAPACITY = 10000;
-    private static final int DEFAULT_CAPACITY = 5;
+    private static final int DEFAULT_CAPACITY = 4;
     
     //create an empty bag with max capacity
     public PileOfBooks() {
@@ -69,23 +69,19 @@ public final class PileOfBooks<T> implements PileInterface<T> {
     /** Adds a new entry to this bag.
      * @param newEntry  The object to be added as a new entry.
      * @return  True if the addition is successful, or false if not. */
-    @Override
     public boolean add(T newEntry){
         checkIntegrity();
-        boolean result = true;
         if (isArrayFull()) {
-            result = false;
             doubleCapacity();
-        } else {
-            bag[numberOfEntries] = newEntry;
-            numberOfEntries++;
         }
-        return result;
+        bag[numberOfEntries] = newEntry;
+        numberOfEntries++;
+       
+        return true;
     }
     
     /** Removes one unspecified entry from this bag, if possible.
      * @return  Either the removed entry, if the removal was successful, or null. */
-    @Override
     public T remove(){
         checkIntegrity();
         T result = null;
@@ -98,7 +94,6 @@ public final class PileOfBooks<T> implements PileInterface<T> {
     } 
     
     //The getTopBook method should retrieve this pile's top book.
-    @Override
     public T getTopBook(){
         checkIntegrity();
         if (numberOfEntries == 0) {
@@ -110,12 +105,10 @@ public final class PileOfBooks<T> implements PileInterface<T> {
     
     /** Sees whether this bag is empty.
      * @return  True if the bag is empty, or false if not. */
-    @Override
     public boolean isEmpty(){
         return numberOfEntries == 0;
     }
     
-    @Override
     /** Removes all entries from this bag. */
     public void clear(){
         while (!isEmpty()){
