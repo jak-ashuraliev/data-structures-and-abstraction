@@ -10,7 +10,6 @@
  * 1 interface with the name as PileInterface,  and 1 test class to test everything.
  * @param T
  */
-
 import java.util.*;
 
 public final class PileOfBooks<T> implements PileInterface<T> {
@@ -19,11 +18,11 @@ public final class PileOfBooks<T> implements PileInterface<T> {
     private int numberOfEntries;
     private boolean integrityOK = false;
     private static final int MAX_CAPACITY = 10000;
-    private static final int DEFAULT_CAPACITY = 4;
+    private static final int DEFAULT_CAPACITY = 5;
     
     //create an empty bag with max capacity
     public PileOfBooks() {
-        this(MAX_CAPACITY);
+        this(DEFAULT_CAPACITY);
     }
     
     /** Creates an empty bag having a given initial capacity.
@@ -54,8 +53,8 @@ public final class PileOfBooks<T> implements PileInterface<T> {
     }
 
     // Throws an exception if the client requests a capacity that is too large.
-    private void checkCapacity(int DEFAULT_CAPACITY) {
-        if (DEFAULT_CAPACITY > MAX_CAPACITY) 
+    private void checkCapacity(int capacity) {
+        if (capacity > MAX_CAPACITY) 
             throw new IllegalStateException("Capacity you are trying to create is too large.");
     }
     
@@ -70,6 +69,7 @@ public final class PileOfBooks<T> implements PileInterface<T> {
     /** Adds a new entry to this bag.
      * @param newEntry  The object to be added as a new entry.
      * @return  True if the addition is successful, or false if not. */
+    @Override
     public boolean add(T newEntry){
         checkIntegrity();
         boolean result = true;
@@ -85,6 +85,7 @@ public final class PileOfBooks<T> implements PileInterface<T> {
     
     /** Removes one unspecified entry from this bag, if possible.
      * @return  Either the removed entry, if the removal was successful, or null. */
+    @Override
     public T remove(){
         checkIntegrity();
         T result = null;
@@ -95,8 +96,9 @@ public final class PileOfBooks<T> implements PileInterface<T> {
         }
         return result;
     } 
-
+    
     //The getTopBook method should retrieve this pile's top book.
+    @Override
     public T getTopBook(){
         checkIntegrity();
         if (numberOfEntries == 0) {
@@ -108,14 +110,17 @@ public final class PileOfBooks<T> implements PileInterface<T> {
     
     /** Sees whether this bag is empty.
      * @return  True if the bag is empty, or false if not. */
+    @Override
     public boolean isEmpty(){
         return numberOfEntries == 0;
     }
-
+    
+    @Override
     /** Removes all entries from this bag. */
     public void clear(){
-        while (!isEmpty())
+        while (!isEmpty()){
             remove();
+        }
     };
     
 }
