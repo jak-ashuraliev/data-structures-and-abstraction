@@ -2,10 +2,11 @@
  * @author Jak Ashuraliev
  * Data Structures / Algorithms
  * 
- * The purpose of this program is to implement LinkedBag ADT Interface.
+ * LinkedBag (A bag implementation that links data)
  */
-public interface BagInterface<T> {
 
+public interface BagInterface<T> {
+    
     public boolean add(T anEntry);
     
     public T remove();
@@ -27,5 +28,4 @@ public interface BagInterface<T> {
     public void replace(T anEntry);
     
     public void removeEvery(T anEntry);
-    
 }
